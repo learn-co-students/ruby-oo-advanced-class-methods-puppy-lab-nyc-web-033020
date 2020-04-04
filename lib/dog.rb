@@ -1,35 +1,27 @@
-require 'pry'
-
 class Dog
+  attr_reader :name
 
   @@all = []
-  @@names = []
 
   def initialize(name)
     @name = name
-    self.save
-    @@names << name
-    #save_name
-  end
-
-  #def save_name
-  #  @@names << @name
-  #end
-
-  def save
-    @@all << self
+    save
   end
 
   def self.all
     @@all
   end
 
-  def self.print_all
-    @@names.uniq.each { |dog| puts dog }
+  def save
+    Dog.all << self
   end
 
   def self.clear_all
     @@all.clear
+  end
+
+  def self.print_all
+    puts Dog.all.map { |dog| dog.name}
   end
 
 end
